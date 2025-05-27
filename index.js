@@ -42,7 +42,7 @@ app.post('/send-email', async (req, res) => {
     params.append('public_key', 'PCFvQygyFiUr27q6T');
 
     for (const key in templateParams) {
-      params.append(`template_params[${key}]`, templateParams[key]);
+      params.append(key, templateParams[key]);
     }
 
     console.log('Odesílám EmailJS formulář:', params.toString());
