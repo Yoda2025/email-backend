@@ -45,6 +45,8 @@ app.post('/send-email', async (req, res) => {
       params.append(`template_params[${key}]`, templateParams[key]);
     }
 
+    console.log('Odesílám EmailJS formulář:', params.toString());
+
     const response = await axios.post(
       'https://api.emailjs.com/api/v1.0/email/send-form',
       params,
