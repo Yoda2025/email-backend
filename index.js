@@ -36,7 +36,7 @@ app.post('/send-email', async (req, res) => {
   };
 
   try {
-    const response = await axios.post('https://api.emailjs.com/api/v1.0/email/send', {
+const response = await axios.post('https://api.emailjs.com/api/v1.0/email/send-form', {
   service_id: 'service_mj8y5tl',
   template_id: 'template_j6409i3',
   public_key: 'PCFvQygyFiUr27q6T',
