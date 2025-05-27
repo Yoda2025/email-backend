@@ -1,6 +1,24 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios');
+const params = new URLSearchParams();
+params.append('service_id', 'service_mj8y5tl');
+params.append('template_id', 'template_j6409i3');
+params.append('public_key', 'PCFvQygyFiUr27q6T');
+
+// přidej každou hodnotu zvlášť
+for (const key in templateParams) {
+  params.append(`template_params[${key}]`, templateParams[key]);
+}
+
+const response = await axios.post(
+  'https://api.emailjs.com/api/v1.0/email/send-form',
+  params,
+  {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
