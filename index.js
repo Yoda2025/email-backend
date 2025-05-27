@@ -41,7 +41,7 @@ app.post('/send-email', async (req, res) => {
       {
         service_id: 'service_mj8y5tl',
         template_id: 'template_j6409i3',
-        user_id: 'PCFvQygyFiUr27q6T',
+        public_key: 'PCFvQygyFiUr27q6T',
         template_params: templateParams
       },
       {
