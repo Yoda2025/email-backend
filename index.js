@@ -39,7 +39,7 @@ app.post('/send-email', async (req, res) => {
     const params = new URLSearchParams();
     params.append('service_id', 'service_mj8y5tl');
     params.append('template_id', 'template_j6409i3');
-    params.append('user_id', 'PCFvQygyFiUr27q6T');
+    params.append('user_id','a2FHdsm7E6XnY808PNSo2');
 
     for (const key in templateParams) {
       params.append(key, templateParams[key]);
@@ -50,7 +50,7 @@ app.post('/send-email', async (req, res) => {
     const response = await axios.post('https://api.emailjs.com/api/v1.0/email/send', {
     service_id: 'service_mj8y5tl',
     template_id: 'template_j6409i3',
-    user_id: 'a2FHdsm7E6XnY808PNSo2', // ← PRIVATE KEY
+    user_id: 'a2FHdsm7E6XnY808PNSo2',
     template_params: {
       name,
       phone,
