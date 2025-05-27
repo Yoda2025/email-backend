@@ -41,12 +41,24 @@ app.post('/send-email', async (req, res) => {
   {
     service_id: 'service_mj8y5tl',
     template_id: 'template_j6409i3',
-    template_params: templateParams
+    public_key: 'PCFvQygyFiUr27q6T', // ✅ public key do těla
+    template_params: {
+      name,
+      phone,
+      date,
+      time,
+      pickup,
+      destination,
+      passengers,
+      luggageHand,
+      luggageSmall,
+      luggageLarge
+    }
   },
   {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer a2FHdsm7E6XnY808PNSo2' // ✅ private key v hlavičce
+      Authorization: 'Bearer a2FHdsm7E6XnY808PNSo2' // ✅ private key do hlavičky
     }
   }
 );
