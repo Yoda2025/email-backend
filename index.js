@@ -37,31 +37,20 @@ app.post('/send-email', async (req, res) => {
 
   try {
     const response = await axios.post(
-  'https://api.emailjs.com/api/v1.0/email/send',
-  {
-    service_id: 'service_mj8y5tl',
-    template_id: 'template_j6409i3',
-    public_key: 'PCFvQygyFiUr27q6T', // ✅ public key do těla
-    template_params: {
-      name,
-      phone,
-      date,
-      time,
-      pickup,
-      destination,
-      passengers,
-      luggageHand,
-      luggageSmall,
-      luggageLarge
-    }
-  },
-  {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer a2FHdsm7E6XnY808PNSo2' // ✅ private key do hlavičky
-    }
-  }
-);
+      'https://api.emailjs.com/api/v1.0/email/send',
+      {
+        service_id: 'service_mj8y5tl',
+        template_id: 'template_j6409i3',
+        public_key: 'PCFvQygyFiUr27q6T',
+        template_params: templateParams
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer a2FHdsm7E6XnY808PNSo2'
+        }
+      }
+    );
 
     console.log('✅ Email odeslán:', response.status);
     res.status(200).json({ message: 'Email odeslán' });
