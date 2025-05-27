@@ -36,39 +36,26 @@ app.post('/send-email', async (req, res) => {
   };
 
   try {
-    const params = new URLSearchParams();
-    params.append('service_id', 'service_mj8y5tl');
-    params.append('template_id', 'template_j6409i3');
-    params.append('user_id','a2FHdsm7E6XnY808PNSo2');
+    const response = await axios.post(
+      'https://api.emailjs.com/api/v1.0/email/send',
+      {
+        service_id: 'service_mj8y5tl',
+        template_id: 'template_j6409i3',
+        user_id: 'a2FHdsm7E6XnY808PNSo2', // ← private key
+        template_params: templateParams
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
 
-    for (const key in templateParams) {
-      params.append(key, templateParams[key]);
-    }
-
-    console.log('Odesílám EmailJS formulář:', params.toString());
-
-    const response = await axios.post('https://api.emailjs.com/api/v1.0/email/send', {
-    service_id: 'service_mj8y5tl',
-    template_id: 'template_j6409i3',
-    user_id: 'a2FHdsm7E6XnY808PNSo2',
-    template_params: {
-      name,
-      phone,
-      date,
-      time,
-      pickup,
-      destination,
-      passengers,
-      luggageHand,
-      luggageSmall,
-      luggageLarge
-  }
-});
-
+    console.log('✅ Email odeslán:', response.status);
     res.status(200).json({ message: 'Email odeslán' });
   } catch (error) {
     const errorData = error.response?.data || error.message;
-    console.error('Chyba při odesílání e-mailu:', errorData);
+    console.error('❌ Chyba při odesílání e-mailu:', errorData);
     res.status(500).json({
       message: 'Chyba při odesílání e-mailu',
       error: errorData
