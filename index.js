@@ -37,11 +37,11 @@ app.post('/send-email', async (req, res) => {
 
   try {
     const response = await axios.post('https://api.emailjs.com/api/v1.0/email/send', {
-      service_id: 'service_mj8y5tl',
-      template_id: 'template_j6409i3',
-      user_id: 'a2FHdsm7E6XnY808PNSo2',
-      template_params: templateParams
-    });
+  service_id: 'service_mj8y5tl',
+  template_id: 'template_j6409i3',
+  public_key: 'PCFvQygyFiUr27q6T',
+  template_params: templateParams
+});
 
     res.status(200).json({ message: 'Email odeslán' });
   } catch (error) {
