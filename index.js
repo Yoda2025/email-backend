@@ -37,19 +37,19 @@ app.post('/send-email', async (req, res) => {
 
   try {
     const response = await axios.post(
-      'https://api.emailjs.com/api/v1.0/email/send',
-      {
-        service_id: 'service_mj8y5tl',
-        template_id: 'template_j6409i3',
-        user_id: 'a2FHdsm7E6XnY808PNSo2', // ← private key
-        template_params: templateParams
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    );
+  'https://api.emailjs.com/api/v1.0/email/send',
+  {
+    service_id: 'service_mj8y5tl',
+    template_id: 'template_j6409i3',
+    template_params: templateParams
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer a2FHdsm7E6XnY808PNSo2' // ✅ private key v hlavičce
+    }
+  }
+);
 
     console.log('✅ Email odeslán:', response.status);
     res.status(200).json({ message: 'Email odeslán' });
