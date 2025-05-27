@@ -36,31 +36,32 @@ app.post('/send-email', async (req, res) => {
   };
 
   try {
-    const response = await axios.post(
-      'https://api.emailjs.com/api/v1.0/email/send',
-      {
-        service_id: 'service_mj8y5tl',
-        template_id: 'template_j6409i3',
-        user_id: 'PCFvQygyFiUr27q6T',
-        template_params: templateParams
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',}
-      }
-    );
-
-    console.log('✅ Email odeslán:', response.status);
-    res.status(200).json({ message: 'Email odeslán' });
-  } catch (error) {
-    const errorData = error.response?.data || error.message;
-    console.error('❌ Chyba při odesílání e-mailu:', errorData);
-    res.status(500).json({
-      message: 'Chyba při odesílání e-mailu',
-      error: errorData
-    });
+   const response = await axios.post(
+  'https://api.emailjs.com/api/v1.0/email/send',
+  {
+    service_id: 'service_mj8y5tl',
+    template_id: 'template_j6409i3',
+    template_params: {
+      name,
+      phone,
+      date,
+      time,
+      pickup,
+      destination,
+      passengers,
+      luggageHand,
+      luggageSmall,
+      luggageLarge
+    }
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer a2FHdsm7E6XnY808PNSo2' // ✅ PRIVATE KEY v hlavičce
+    }
   }
-});
+);
+
 
 app.listen(PORT, () => {
   console.log(`Server běží na portu ${PORT}`);
