@@ -39,7 +39,7 @@ app.post('/send-email', async (req, res) => {
     const params = new URLSearchParams();
     params.append('service_id', 'service_mj8y5tl');
     params.append('template_id', 'template_j6409i3');
-    params.append('public_key', 'PCFvQygyFiUr27q6T');
+    params.append('user_id', 'PCFvQygyFiUr27q6T');
 
     for (const key in templateParams) {
       params.append(key, templateParams[key]);
